@@ -68,11 +68,6 @@ class AmazonCrawler:
                 product_urls = tree.xpath(SelectorsConstants.PRODUCT_URL_XPATHS.value)
                 self.all_products_urls.extend(product_urls)
 
-                next_page = tree.xpath(SelectorsConstants.NEXT_PAGE_XPATH.value)
-                logger.info(f"Request Successful for Page Number: {page_no}")
-            else:
-                logger.warning(f"Request Was Not Successful: {response.status_code}")
-                break
 
 
     def get_product_responses(self, *, product_urls: list):

@@ -1,11 +1,11 @@
-FROM python:3.10-slim
+FROM python:3.12-slim
 
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
 
+# Increase timeout and add retries
+RUN pip install --no-cache-dir --default-timeout=100 --retries=10 -r requirements.txt
 
-# Set the working directory
 WORKDIR /app
 COPY . /app
-# Command to run the application
-CMD ["python","main.py"]
+
+CMD ["python", "main.py"]
