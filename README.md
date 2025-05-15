@@ -16,7 +16,6 @@ This project is a Python-based web scraper designed to extract product details f
 - Supports proxy rotation and user-agent spoofing to reduce blocking
 - Stores data in CSV or JSON format
 - Modular and extensible code structure
-
 ## 📦 Tech Stack
 
 - Python 3.x
