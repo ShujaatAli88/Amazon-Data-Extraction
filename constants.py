@@ -70,7 +70,7 @@ class CrawlerConstants(Enum):
     }
 
 class SelectorsConstants(Enum):
-    PRODUCT_URL_XPATHS = '//h2[contains(@class,"a-size-mini")]//a//@href'
+    PRODUCT_URL_XPATHS = "//div[contains(@role,'listitem')]/div/div//a[contains(@class,'a-link-normal s-line-clamp-2')]/@href"
     PRODUCT_TITLE_XPATH = '//h1[@id="title"]/span/text()'
     PRODUCT_PRICE_XPATH = '//div[contains(@class,"a-box")]//span[contains(@class,"a-price")]/span[contains(@class,"a-offscreen")]/text()'
     PRODUCT_COLOR_AND_EDITION_XPATH = '//span[@class="selection"]//text()'
