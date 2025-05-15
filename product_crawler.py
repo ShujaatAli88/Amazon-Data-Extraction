@@ -28,7 +28,7 @@ class AmazonCrawler:
             CrawlerBaseURLs.BASE_URL.value,
             params=CrawlerConstants.PARAMS.value,
             cookies=CrawlerConstants.COOKIES.value,
-            headers=CrawlerConstants.HEADERS.value,
+            headers=CrawlerConstants.HEADERS.value
         )
 
         if response.status_code == 200:
@@ -57,9 +57,8 @@ class AmazonCrawler:
             response = requests.get(
                 next_page_url,
                 cookies=CrawlerConstants.COOKIES.value,
-                headers=CrawlerConstants.HEADERS.value,
+                headers=CrawlerConstants.HEADERS.value
             )
-
             if response.status_code == 200:
                 with open("second.html", "w") as f:
                     f.write(response.text)
@@ -68,7 +67,8 @@ class AmazonCrawler:
                 product_urls = tree.xpath(SelectorsConstants.PRODUCT_URL_XPATHS.value)
                 self.all_products_urls.extend(product_urls)
 
-                next_page = tree.xpath(SelectorsConstants.NEXT_PAGE_XPATH.value)
+                # next_page = tree.xpath(SelectorsConstants.NEXT_PAGE_XPATH.value)
+                next_page = False
                 logger.info(f"Request Successful for Page Number: {page_no}")
             else:
                 logger.warning(f"Request Was Not Successful: {response.status_code}")
@@ -88,7 +88,7 @@ class AmazonCrawler:
             response = requests.get(
                 product_url,
                 cookies=CrawlerConstants.COOKIES.value,
-                headers=CrawlerConstants.HEADERS.value,
+                headers=CrawlerConstants.HEADERS.value
             )
             if response.status_code == 200:
                 logger.info(f"Raw Response Fetched Successfully for : {product_url}")
