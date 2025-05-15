@@ -20,3 +20,23 @@ class AirTableManager():
         #     key_fields=["product id"]
         # )
         logger.info("Records Upserted Successfully.")
+
+
+#### Example Usage #####
+if __name__ == "__main__":
+    ob = AirTableManager()
+    ob.upsert_data(
+        data=
+        {
+            "product id": "shujaa",
+            "product title": "title",
+            "product price": "product_price",
+            "product url": "res.url",
+            "product rating": "ratings[0]",
+            "brand": "features[0].strip()",
+            "color": "features[1].strip()",
+            "form factor": "features[2].strip()",
+            "noise control": "features[3].strip()",
+            "headphone jack": "features[4].strip()"
+        }
+    )

@@ -20,4 +20,4 @@ This project is a Python-based web scraper designed to extract product details f
 
 - Python 3.x
 - `requests`, `beautifulsoup4`, `lxml` (for lightweight scraping)
-- `pandas` (for structured output)
+- `DataBase` : `Airtable` for Data Storage.
