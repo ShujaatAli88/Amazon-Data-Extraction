@@ -20,7 +20,6 @@ jobs:
       - name: Set image tag
         id: vars
         run: echo "IMAGE_TAG=$(date +%s)" >> $GITHUB_ENV
-
       - name: Build the Docker image
         run: |
           docker build . \
