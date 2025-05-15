@@ -7,12 +7,28 @@ on:
     branches: [ "main" ]
 
 jobs:
-
-  build:
-
+  build-and-push:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Log in to Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+      - name: Set image tag
+        id: vars
+        run: echo "IMAGE_TAG=$(date +%s)" >> $GITHUB_ENV
+
+      - name: Build the Docker image
+        run: |
+          docker build . \
+            --file Dockerfile \
+            --tag ${{ secrets.DOCKER_USERNAME }}/amazon-extractor:latest \
+            --tag ${{ secrets.DOCKER_USERNAME }}/amazon-extractor:${{ env.IMAGE_TAG }}
+
+      - name: Push image to Docker Hub
+        run: |
+          docker push ${{ secrets.DOCKER_USERNAME }}/amazon-extractor:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/amazon-extractor:${{ env.IMAGE_TAG }}
